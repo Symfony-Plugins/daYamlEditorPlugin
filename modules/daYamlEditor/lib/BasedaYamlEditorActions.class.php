@@ -34,7 +34,8 @@ abstract class BasedaYamlEditorActions extends sfActions
         if ($this->form->save())
         {
           $this->getUser()->setFlash('notice', "Configuration edited succesfully", true);
-          $this->redirect('daYamlEditor/index');
+          $requestParameters = $request->getRequestParameters();
+          $this->redirect($requestParameters['module'].'/'.$requestParameters['action']);
         }
       }
     }
