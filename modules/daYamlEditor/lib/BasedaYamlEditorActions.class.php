@@ -9,13 +9,21 @@
 abstract class BasedaYamlEditorActions extends sfActions
 {
   /**
-   * Index action only handle and save a form
+   * Index action, override to use your own daYamlEditor forms
    * @param sfWebRequest $request
    */
   public function executeIndex(sfWebRequest $request)
   {
     $this->form = new daYamlEditorForm();
+    $this->processForm($request);
+  }
 
+  /**
+   * Process and save the form
+   * @param sfWebRequest $request
+   */
+  public function processForm(sfWebRequest $request)
+  {
     if ($request->isMethod('post'))
     {
       $this->form->bind(
