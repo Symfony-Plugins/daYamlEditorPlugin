@@ -13,7 +13,7 @@ class daYamlEditorForm extends sfFormSymfony
    * If null, all the daYamlEditor.yml declared blocks will be use
    * @var string
    */
-  private $daYamlEditorName = null;
+  protected $daYamlEditorName = null;
 
   /**
    * Call daYamlEditor::buildForm and do some settings.
