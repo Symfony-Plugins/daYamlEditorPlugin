@@ -9,7 +9,7 @@
  */
 class daYamlEditorPluginConfiguration extends sfPluginConfiguration
 {
-  const VERSION = '0.1.0-BETA';
+  const VERSION = '0.1.2-BETA';
 
   /**
    * @see sfPluginConfiguration

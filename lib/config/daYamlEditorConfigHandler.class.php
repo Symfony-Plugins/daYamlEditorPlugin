@@ -22,7 +22,7 @@ class daYamlEditorConfigHandler extends sfYamlConfigHandler
     {
       foreach ($block['fields'] as $name => $options)
       {
-        if (in_array($name, $already_used)) throw new sfParseException("Field names must be unique");
+        if (in_array($name, $already_used)) throw new sfParseException("Field names must be unique even in separate blocks");
         $already_used[] = $name;
       }
     }

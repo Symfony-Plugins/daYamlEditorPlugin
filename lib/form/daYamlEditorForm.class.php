@@ -17,7 +17,7 @@ class daYamlEditorForm extends sfFormSymfony
 
   /**
    * Call daYamlEditor::buildForm and do some settings.
-   * Don't forgot to call parent::configure() if you extend this form.
+   * Don't forgot to call parent::configure() if you extend this method.
    */
   public function configure()
   {
