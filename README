@@ -16,8 +16,11 @@ You can edit any Yaml file (your app.yml, or your customAwesomeConfig.yml, even 
 
   * Install the plugin (download the package, or use a `svn:externals`)
 
+        http://svn.symfony-project.com/plugins/daYamlEditorPlugin/trunk/
+
   * Active the plugin in your ProjectConfiguration
 
+        [php]
         $this->enablePlugins('aNicePlugin', 'daYamlEditorPlugin');
 
   * Enable the `daYamlEditor` module in your `settings.yml`
@@ -75,12 +78,12 @@ You can edit any Yaml file (your app.yml, or your customAwesomeConfig.yml, even 
 
 ## Create multiple forms
 
-  * If you want to separate your fields in multiple forms, you just have to create a new form and say to it witch block to use.
+  * If you want to separate your fields in multiple forms, you just have to create a new form and say to it witch config block to use.
 
         [php]
         class myYamlEditorForm extends daYamlEditorForm
         {
-          private $daYamlEditorName = "myaboutconfigform";
+          protected $daYamlEditorName = "myaboutconfigform";
 
           public function configure()
           {
@@ -89,7 +92,7 @@ You can edit any Yaml file (your app.yml, or your customAwesomeConfig.yml, even 
           }
         }
 
-    If `$daYamlEditorName` is null, all the blocks are used.
+    If `$daYamlEditorName` is null, all the blocks are used (it's the default behavior of daYamlEditorForm).
 
   * The next step is to build your form action :
 
@@ -113,6 +116,8 @@ You can edit any Yaml file (your app.yml, or your customAwesomeConfig.yml, even 
           }
         }
 
+    You can also override daYamlEditorActions, it's up to you.
+
 ## Tips
 
   * ### Clear the cache after updating a config file
@@ -124,6 +129,12 @@ You can edit any Yaml file (your app.yml, or your customAwesomeConfig.yml, even 
         $this->dispatcher->connect('daYamlEditor.save', array($this, 'clearCache'));
 
     (the first param of the sfEvent object will be the name of the block, or null). Read the [symfony documentation to do it](http://www.symfony-project.org/book/1_2/12-Caching#chapter_12_sub_clearing_the_entire_cache).
+
+    The quick and dirty way for clearing the cache :
+
+        [php]
+        sfToolkit::clearDirectory( sfConfig::get('sf_cache_dir').'/frontend/prod/template' );
+        sfToolkit::clearDirectory( sfConfig::get('sf_cache_dir').'/frontend/prod/config' );
 
   * ### Remove the "Doctrine" style on my form
 
