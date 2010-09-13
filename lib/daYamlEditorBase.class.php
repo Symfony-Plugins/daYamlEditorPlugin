@@ -11,7 +11,7 @@ abstract class daYamlEditorBase
     $dispatcher  = null; 
   protected
     $name        = null;
-  private
+  protected
     $_config     = array();
   protected
     $type_widget = array (
@@ -113,7 +113,7 @@ abstract class daYamlEditorBase
    * @param array  $attributes
    * @return sfWidget
    */
-  private function createWidgetByType($type, $options = array(), $attributes = array())
+  protected function createWidgetByType($type, $options = array(), $attributes = array())
   {
     if (!isset($this->type_widget[$type])) throw new Exception("Unrecognized widget type '".$type."' in daYamlEditor");
 
@@ -127,7 +127,7 @@ abstract class daYamlEditorBase
    * @param array  $messages
    * @return sfValidatorBase
    */
-  private function createValidatorByType($type, $options = array(), $messages = array())
+  protected function createValidatorByType($type, $options = array(), $messages = array())
   {
     if (!isset($this->type_validator[$type])) throw new Exception("Unrecognized validator type '".$type."' in daYamlEditor");
 
@@ -141,7 +141,7 @@ abstract class daYamlEditorBase
    * @param array $default The yaml file as an array
    * @return array         The "options" array for sfWidget
    */
-  private function buildWidgetOptions(array $field, array $default)
+  protected function buildWidgetOptions(array $field, array $default)
   {
     // Search the default value
     foreach(explode('/', $field['path']) as $key)
@@ -166,7 +166,7 @@ abstract class daYamlEditorBase
    * @param array $field   The field config
    * @return array         The "options" array for sfValidator
    */
-  private function buildValidatorOptions(array $field)
+  protected function buildValidatorOptions(array $field)
   {
     $options = array();
     if (isset($field['validate']))
@@ -180,7 +180,7 @@ abstract class daYamlEditorBase
    * @param array $field   The field config
    * @return array         The "messages" array for sfValidator
    */
-  private function buildValidatorMessages(array $field)
+  protected function buildValidatorMessages(array $field)
   {
     $messages = array();
     if (isset($field['message']))
